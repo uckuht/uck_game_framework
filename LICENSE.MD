@@ -17,3 +17,4 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 
 The main requirement is that if you do use VSGE, then you should give us credit by including the copyright notice somewhere in your product or its documentation.
 A nice way to give us further credit is to include a VSGE logo and author name Mukshin Valery for your product.
+
