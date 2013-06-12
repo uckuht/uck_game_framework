@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="UCKENGINE" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="Result/Debug/UCKENGINE" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="Result/Release/UCKENGINE" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-DE_P_WIN" />
+		</Compiler>
+		<Unit filename="../../CONF.txt" />
+		<Unit filename="../../DESCRIPTION.txt" />
+		<Unit filename="../../LICENSE.MD" />
+		<Unit filename="../../README.MD" />
+		<Unit filename="../../STAFF.txt" />
+		<Unit filename="../../UCKMODULES/BASE/ELANG.h" />
+		<Unit filename="../../UCKMODULES/BASE/EMACRO.h" />
+		<Unit filename="../../UCKMODULES/BASE/ES_ATLAS_FRAME.h" />
+		<Unit filename="../../UCKMODULES/BASE/ES_DATA.h" />
+		<Unit filename="../../UCKMODULES/BASE/ES_FRECT.h" />
+		<Unit filename="../../UCKMODULES/BASE/ES_MATRIX4.h" />
+		<Unit filename="../../UCKMODULES/BASE/ES_STRING_DYNAMIC.h" />
+		<Unit filename="../../UCKMODULES/BASE/ES_STRING_STATIC.h" />
+		<Unit filename="../../UCKMODULES/BASE/ES_TRANSFORM.h" />
+		<Unit filename="../../UCKMODULES/BASE/ES_VECTOR2.h" />
+		<Unit filename="../../UCKMODULES/BASE/ES_VECTOR3.h" />
+		<Unit filename="../../UCKMODULES/BASE/ES_VECTOR4.h" />
+		<Unit filename="../../UCKMODULES/BASE/ETYPES.h" />
+		<Unit filename="../../UCKMODULES/OS/EC_OS_INTERFACE.h" />
+		<Unit filename="../../UCKMODULES/OS/EC_WIDGET_INTERFACE.h" />
+		<Unit filename="../../UCKMODULES/OS/OS.h" />
+		<Unit filename="../../UCKMODULES/OS/win/EC_OS_WIN.h" />
+		<Unit filename="../../UCKMODULES/OS/win/EC_WIDGET_WIN.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

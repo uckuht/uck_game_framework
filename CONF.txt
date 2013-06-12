@@ -1,0 +1,29 @@
+select platfom:
+    win             E_P_WIN
+    osx             E_P_OSX
+    ios             E_P_IOS
+    android         E_P_AND
+
+    nix???          E_P_KDE
+                    E_P_GNM
+                    E_P_GNE
+                    valve ???
+
+select render:
+    directX9        E_R_DX9
+    openGl          E_R_OGL
+    openGlES2.0     E_R_OG2
+
+select processor architecture:
+    x86             E_X_86
+    x64             E_X_64
+    armx            E_X_ARMX
+
+compile mode:
+    debug           E_C_DEBUG
+    release         E_C_RELEASE
+
+logging:
+    console         E_LOG_CONSOLE
+    file            E_LOG_FILE
+    widget          E_LOG_WDGT

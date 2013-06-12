@@ -1,0 +1,85 @@
+# depslib dependency file v1.0
+1368990826 source:c:\users\linuks\documents\github\uck_game_framework\ucktests\test_os_and_widget\main.cpp
+	"OS/OS.h"
+	"BASE/ELANG.h"
+	"BASE/EMACRO.h"
+
+1368973308 c:\users\linuks\documents\github\uck_game_framework\uckmodules\os\os.h
+	"win/EC_OS_WIN.h"
+
+1368990107 c:\users\linuks\documents\github\uck_game_framework\uckmodules\os\win\ec_os_win.h
+	"../EC_OS_INTERFACE.h"
+	"EC_WIDGET_WIN.h"
+
+1368990058 c:\users\linuks\documents\github\uck_game_framework\uckmodules\os\ec_os_interface.h
+
+1368989534 c:\users\linuks\documents\github\uck_game_framework\uckmodules\os\win\ec_widget_win.h
+	"../EC_WIDGET_INTERFACE.h"
+	"BASE/EPLATFORM.h"
+
+1368989432 c:\users\linuks\documents\github\uck_game_framework\uckmodules\os\ec_widget_interface.h
+	<string>
+
+1368973426 c:\users\linuks\documents\github\uck_game_framework\uckmodules\base\elang.h
+
+1368973140 c:\users\linuks\documents\github\uck_game_framework\uckmodules\base\eplatform.h
+	<windows.h>
+
+1368991338 source:c:\users\linuks\documents\github\uck_game_framework\uckmodules\os\win\ec_widget_win.cpp
+	"EC_WIDGET_WIN.h"
+	"BASE/ELANG.h"
+	"BASE/EMACRO.h"
+
+1368988770 c:\users\linuks\documents\github\uck_game_framework\uckmodules\base\emacro.h
+	<iostream>
+
+1368991069 source:c:\users\linuks\documents\github\uck_game_framework\uckmodules\os\win\ec_os_win.cpp
+	"EC_OS_WIN.h"
+	"BASE/ELANG.h"
+
+1368991069 source:e:\data\vsge\uckmodules\os\win\ec_os_win.cpp
+	"EC_OS_WIN.h"
+	"BASE/ELANG.h"
+
+1369774619 e:\data\vsge\uckmodules\os\win\ec_os_win.h
+	"../EC_OS_INTERFACE.h"
+	"EC_WIDGET_WIN.h"
+
+1369773291 e:\data\vsge\uckmodules\os\ec_os_interface.h
+	"BASE/ETYPES.h"
+
+1369773128 e:\data\vsge\uckmodules\os\win\ec_widget_win.h
+	"../EC_WIDGET_INTERFACE.h"
+	"BASE/EPLATFORM.h"
+	"BASE/ES_IRECT.h"
+
+1369773510 e:\data\vsge\uckmodules\os\ec_widget_interface.h
+	<string>
+	"BASE/ETYPES.h"
+
+1368973140 e:\data\vsge\uckmodules\base\eplatform.h
+	<windows.h>
+
+1369766510 e:\data\vsge\uckmodules\base\elang.h
+
+1369774699 source:e:\data\vsge\ucktests\test_os_and_widget\main.cpp
+	"OS/OS.h"
+	"BASE/ELANG.h"
+	"BASE/EMACRO.h"
+
+1368973308 e:\data\vsge\uckmodules\os\os.h
+	"win/EC_OS_WIN.h"
+
+1369771967 e:\data\vsge\uckmodules\base\emacro.h
+	<iostream>
+
+1369774742 source:e:\data\vsge\uckmodules\os\win\ec_widget_win.cpp
+	"EC_WIDGET_WIN.h"
+	"BASE/ELANG.h"
+	"BASE/EMACRO.h"
+
+1369770994 e:\data\vsge\uckmodules\base\es_irect.h
+
+1369773355 e:\data\vsge\uckmodules\base\etypes.h
+	<inttypes.h>
+

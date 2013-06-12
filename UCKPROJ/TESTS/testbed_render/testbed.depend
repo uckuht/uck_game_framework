@@ -1,0 +1,464 @@
+# depslib dependency file v1.0
+1370545223 source:e:\data\vsge\uckmodules\os\win\ec_os_win.cpp
+	"EC_OS_WIN.h"
+	"BASE/ELANG.h"
+
+1369774619 e:\data\vsge\uckmodules\os\win\ec_os_win.h
+	"../EC_OS_INTERFACE.h"
+	"EC_WIDGET_WIN.h"
+
+1370545223 e:\data\vsge\uckmodules\os\ec_os_interface.h
+	"BASE/ETYPES.h"
+
+1369773355 e:\data\vsge\uckmodules\base\etypes.h
+	<inttypes.h>
+
+1370545223 e:\data\vsge\uckmodules\os\win\ec_widget_win.h
+	"../EC_WIDGET_INTERFACE.h"
+	"BASE/EPLATFORM.h"
+	"BASE/ES_IRECT.h"
+
+1370545223 e:\data\vsge\uckmodules\os\ec_widget_interface.h
+	<string>
+	"BASE/ETYPES.h"
+
+1368973140 e:\data\vsge\uckmodules\base\eplatform.h
+	<windows.h>
+
+1369770994 e:\data\vsge\uckmodules\base\es_irect.h
+
+1369766510 e:\data\vsge\uckmodules\base\elang.h
+
+1370552142 source:e:\data\vsge\uckmodules\os\win\ec_widget_win.cpp
+	"EC_WIDGET_WIN.h"
+	"BASE/ELANG.h"
+	"BASE/EMACRO.h"
+
+1370183565 e:\data\vsge\uckmodules\base\emacro.h
+	<iostream>
+
+1370694962 source:e:\data\vsge\uckmodules\render\render_dx\ec_render.cpp
+	<string>
+	"RENDER/RENDER_DX/ADDON/Include/d3d9.h"
+	"RENDER/RENDER_DX/ADDON/Include/d3dx9.h"
+	"RENDER/ES_DRAW_DATA.h"
+	"RENDER/ES_DRAW_OPTIONS.h"
+	"EC_RENDER.h"
+	"BASE/EMACRO.h"
+	"BASE/ELANG.h"
+
+1370545223 e:\data\vsge\uckmodules\render\render_dx\ec_render.h
+	"BASE/EPLATFORM.h"
+	"BASE/ES_POINT2.h"
+	"BASE/ES_VECTOR4.h"
+	"BASE/ES_TRANSFORM.h"
+	"RENDER/RENDER_DX/ADDON/Include/d3d9.h"
+	"RENDER/RENDER_DX/ADDON/Include/d3dx9.h"
+
+1274308617 e:\data\vsge\uckmodules\render\render_dx\addon\include\d3d9.h
+	<stdlib.h>
+	<objbase.h>
+	<windows.h>
+	"d3d9types.h"
+	"d3d9caps.h"
+
+1274308617 e:\data\vsge\uckmodules\render\render_dx\addon\include\d3d9types.h
+	<float.h>
+
+1274308617 e:\data\vsge\uckmodules\render\render_dx\addon\include\d3d9caps.h
+
+1274308617 e:\data\vsge\uckmodules\render\render_dx\addon\include\d3dx9.h
+	<limits.h>
+	"d3d9.h"
+	"d3dx9math.h"
+	"d3dx9core.h"
+	"d3dx9xof.h"
+	"d3dx9mesh.h"
+	"d3dx9shader.h"
+	"d3dx9effect.h"
+	"d3dx9tex.h"
+	"d3dx9shape.h"
+	"d3dx9anim.h"
+
+1274308617 e:\data\vsge\uckmodules\render\render_dx\addon\include\d3dx9math.h
+	"d3dx9.h"
+	<math.h>
+	"d3dx9math.inl"
+
+1274308617 e:\data\vsge\uckmodules\render\render_dx\addon\include\d3dx9math.inl
+
+1274308617 e:\data\vsge\uckmodules\render\render_dx\addon\include\d3dx9core.h
+	"d3dx9.h"
+
+1274308617 e:\data\vsge\uckmodules\render\render_dx\addon\include\d3dx9xof.h
+	"d3dx9.h"
+
+1274308617 e:\data\vsge\uckmodules\render\render_dx\addon\include\d3dx9mesh.h
+	"d3dx9.h"
+
+1274308617 e:\data\vsge\uckmodules\render\render_dx\addon\include\d3dx9shader.h
+	"d3dx9.h"
+
+1274308617 e:\data\vsge\uckmodules\render\render_dx\addon\include\d3dx9effect.h
+	"d3dx9.h"
+
+1274308617 e:\data\vsge\uckmodules\render\render_dx\addon\include\d3dx9tex.h
+	"d3dx9.h"
+
+1274308617 e:\data\vsge\uckmodules\render\render_dx\addon\include\d3dx9shape.h
+	"d3dx9.h"
+
+1274308617 e:\data\vsge\uckmodules\render\render_dx\addon\include\d3dx9anim.h
+
+1370695012 source:e:\data\vsge\ucktests\test_os_and_widget\main.cpp
+	"OS/OS.h"
+	"RENDER/RENDER.h"
+	"BASE/ELANG.h"
+	"BASE/EMACRO.h"
+	"RENDER/ES_DRAW_DATA.h"
+	"RENDER/ES_DRAW_OPTIONS.h"
+
+1368973308 e:\data\vsge\uckmodules\os\os.h
+	"win/EC_OS_WIN.h"
+
+1370545223 e:\data\vsge\uckmodules\render\render.h
+	"RENDER/RENDER_DX/EC_RENDER.h"
+
+1370545223 e:\data\vsge\uckmodules\base\es_vector4.h
+	"BASE/ETYPES.h"
+
+1370545223 e:\data\vsge\uckmodules\base\es_point2.h
+	"BASE/ETYPES.h"
+
+1370553516 source:e:\data\vsge\uckmodules\render\es_draw_data.cpp
+	<string.h>
+	"ES_DRAW_DATA.h"
+	"BASE/ELANG.h"
+	"BASE/EMACRO.h"
+	"BASE/ES_VECTOR3.h"
+
+1370547475 e:\data\vsge\uckmodules\render\es_draw_data.h
+	"BASE/ETYPES.h"
+
+1370545223 e:\data\vsge\uckmodules\render\es_draw_options.h
+
+1370382502 e:\data\vsge\uckmodules\base\es_transform.h
+
+1370546518 source:e:\data\vsge\uckmodules\base\es_vector3.cpp
+	"ES_VECTOR3.h"
+
+1370547403 e:\data\vsge\uckmodules\base\es_vector3.h
+	"BASE/ETYPES.h"
+
+1370710410 source:c:\users\user\dropbox\vsge\uckmodules\base\es_vector3.cpp
+	"ES_VECTOR3.h"
+
+1370547403 c:\users\user\dropbox\vsge\uckmodules\base\es_vector3.h
+	"BASE/ETYPES.h"
+
+1369773355 c:\users\user\dropbox\vsge\uckmodules\base\etypes.h
+	<inttypes.h>
+
+1370545223 source:c:\users\user\dropbox\vsge\uckmodules\os\win\ec_os_win.cpp
+	"EC_OS_WIN.h"
+	"BASE/ELANG.h"
+
+1369774619 c:\users\user\dropbox\vsge\uckmodules\os\win\ec_os_win.h
+	"../EC_OS_INTERFACE.h"
+	"EC_WIDGET_WIN.h"
+
+1370545223 c:\users\user\dropbox\vsge\uckmodules\os\ec_os_interface.h
+	"BASE/ETYPES.h"
+
+1370701613 c:\users\user\dropbox\vsge\uckmodules\os\win\ec_widget_win.h
+	"../EC_WIDGET_INTERFACE.h"
+	"BASE/EPLATFORM.h"
+	"BASE/ES_IRECT.h"
+
+1370545223 c:\users\user\dropbox\vsge\uckmodules\os\ec_widget_interface.h
+	<string>
+	"BASE/ETYPES.h"
+
+1368973140 c:\users\user\dropbox\vsge\uckmodules\base\eplatform.h
+	<windows.h>
+
+1369770994 c:\users\user\dropbox\vsge\uckmodules\base\es_irect.h
+
+1370711486 c:\users\user\dropbox\vsge\uckmodules\base\elang.h
+
+1370701613 source:c:\users\user\dropbox\vsge\uckmodules\os\win\ec_widget_win.cpp
+	"EC_WIDGET_WIN.h"
+	"BASE/ELANG.h"
+	"BASE/EMACRO.h"
+
+1370710922 c:\users\user\dropbox\vsge\uckmodules\base\emacro.h
+	<iostream>
+
+1370712674 source:c:\users\user\dropbox\vsge\uckmodules\render\es_draw_data.cpp
+	<string.h>
+	"ES_DRAW_DATA.h"
+	"BASE/ELANG.h"
+	"BASE/EMACRO.h"
+	"BASE/ES_VECTOR3.h"
+
+1370712717 c:\users\user\dropbox\vsge\uckmodules\render\es_draw_data.h
+	"BASE/ETYPES.h"
+
+1371046270 source:c:\users\user\dropbox\vsge\ucktests\test_os_and_widget\main.cpp
+	"OS/OS.h"
+	"RENDER/RENDER.h"
+	"BASE/ELANG.h"
+	"BASE/EMACRO.h"
+	"RENDER/ES_DRAW_DATA.h"
+	"RENDER/ES_DRAW_OPTIONS.h"
+
+1368973308 c:\users\user\dropbox\vsge\uckmodules\os\os.h
+	"win/EC_OS_WIN.h"
+
+1370545223 c:\users\user\dropbox\vsge\uckmodules\render\render.h
+	"RENDER/RENDER_DX/EC_RENDER.h"
+
+1371046463 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\ec_render.h
+	"BASE/EPLATFORM.h"
+	"BASE/ES_POINT2.h"
+	"BASE/ES_VECTOR4.h"
+	"BASE/ES_TRANSFORM.h"
+	"RENDER/RENDER_DX/ADDON/Include/d3d9.h"
+	"RENDER/RENDER_DX/ADDON/Include/d3dx9.h"
+
+1370545223 c:\users\user\dropbox\vsge\uckmodules\base\es_point2.h
+	"BASE/ETYPES.h"
+
+1370545223 c:\users\user\dropbox\vsge\uckmodules\base\es_vector4.h
+	"BASE/ETYPES.h"
+
+1370382502 c:\users\user\dropbox\vsge\uckmodules\base\es_transform.h
+
+1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3d9.h
+	<stdlib.h>
+	<objbase.h>
+	<windows.h>
+	"d3d9types.h"
+	"d3d9caps.h"
+
+1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3d9types.h
+	<float.h>
+
+1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3d9caps.h
+
+1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9.h
+	<limits.h>
+	"d3d9.h"
+	"d3dx9math.h"
+	"d3dx9core.h"
+	"d3dx9xof.h"
+	"d3dx9mesh.h"
+	"d3dx9shader.h"
+	"d3dx9effect.h"
+	"d3dx9tex.h"
+	"d3dx9shape.h"
+	"d3dx9anim.h"
+
+1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9math.h
+	"d3dx9.h"
+	<math.h>
+	"d3dx9math.inl"
+
+1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9math.inl
+
+1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9core.h
+	"d3dx9.h"
+
+1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9xof.h
+	"d3dx9.h"
+
+1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9mesh.h
+	"d3dx9.h"
+
+1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9shader.h
+	"d3dx9.h"
+
+1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9effect.h
+	"d3dx9.h"
+
+1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9tex.h
+	"d3dx9.h"
+
+1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9shape.h
+	"d3dx9.h"
+
+1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9anim.h
+
+1370712128 c:\users\user\dropbox\vsge\uckmodules\render\es_draw_options.h
+	"BASE/ETYPES.h"
+
+1371046441 source:c:\users\user\dropbox\vsge\uckmodules\render\render_dx\ec_render.cpp
+	<string>
+	"RENDER/RENDER_DX/ADDON/Include/d3d9.h"
+	"RENDER/RENDER_DX/ADDON/Include/d3dx9.h"
+	"RENDER/ES_DRAW_DATA.h"
+	"RENDER/ES_DRAW_OPTIONS.h"
+	"EC_RENDER.h"
+	"BASE/EMACRO.h"
+	"BASE/ELANG.h"
+
+1370712145 source:c:\users\user\dropbox\vsge\uckmodules\render\es_draw_options.cpp
+	<string.h>
+	"ES_DRAW_OPTIONS.h"
+
+1370710410 source:c:\users\linuks\dropbox\vsge\uckmodules\base\es_vector3.cpp
+	"ES_VECTOR3.h"
+
+1370547403 c:\users\linuks\dropbox\vsge\uckmodules\base\es_vector3.h
+	"BASE/ETYPES.h"
+
+1369773355 c:\users\linuks\dropbox\vsge\uckmodules\base\etypes.h
+	<inttypes.h>
+
+1370545223 source:c:\users\linuks\dropbox\vsge\uckmodules\os\win\ec_os_win.cpp
+	"EC_OS_WIN.h"
+	"BASE/ELANG.h"
+
+1369774619 c:\users\linuks\dropbox\vsge\uckmodules\os\win\ec_os_win.h
+	"../EC_OS_INTERFACE.h"
+	"EC_WIDGET_WIN.h"
+
+1370545223 c:\users\linuks\dropbox\vsge\uckmodules\os\ec_os_interface.h
+	"BASE/ETYPES.h"
+
+1370701613 c:\users\linuks\dropbox\vsge\uckmodules\os\win\ec_widget_win.h
+	"../EC_WIDGET_INTERFACE.h"
+	"BASE/EPLATFORM.h"
+	"BASE/ES_IRECT.h"
+
+1370545223 c:\users\linuks\dropbox\vsge\uckmodules\os\ec_widget_interface.h
+	<string>
+	"BASE/ETYPES.h"
+
+1368973140 c:\users\linuks\dropbox\vsge\uckmodules\base\eplatform.h
+	<windows.h>
+
+1369770994 c:\users\linuks\dropbox\vsge\uckmodules\base\es_irect.h
+
+1370711486 c:\users\linuks\dropbox\vsge\uckmodules\base\elang.h
+
+1370701613 source:c:\users\linuks\dropbox\vsge\uckmodules\os\win\ec_widget_win.cpp
+	"EC_WIDGET_WIN.h"
+	"BASE/ELANG.h"
+	"BASE/EMACRO.h"
+
+1370710922 c:\users\linuks\dropbox\vsge\uckmodules\base\emacro.h
+	<iostream>
+
+1370712674 source:c:\users\linuks\dropbox\vsge\uckmodules\render\es_draw_data.cpp
+	<string.h>
+	"ES_DRAW_DATA.h"
+	"BASE/ELANG.h"
+	"BASE/EMACRO.h"
+	"BASE/ES_VECTOR3.h"
+
+1370712717 c:\users\linuks\dropbox\vsge\uckmodules\render\es_draw_data.h
+	"BASE/ETYPES.h"
+
+1370712145 source:c:\users\linuks\dropbox\vsge\uckmodules\render\es_draw_options.cpp
+	<string.h>
+	"ES_DRAW_OPTIONS.h"
+
+1370712128 c:\users\linuks\dropbox\vsge\uckmodules\render\es_draw_options.h
+	"BASE/ETYPES.h"
+
+1370713250 source:c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\ec_render.cpp
+	<string>
+	"RENDER/RENDER_DX/ADDON/Include/d3d9.h"
+	"RENDER/RENDER_DX/ADDON/Include/d3dx9.h"
+	"RENDER/ES_DRAW_DATA.h"
+	"RENDER/ES_DRAW_OPTIONS.h"
+	"EC_RENDER.h"
+	"BASE/EMACRO.h"
+	"BASE/ELANG.h"
+
+1274308617 c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3d9.h
+	<stdlib.h>
+	<objbase.h>
+	<windows.h>
+	"d3d9types.h"
+	"d3d9caps.h"
+
+1274308617 c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3d9types.h
+	<float.h>
+
+1274308617 c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3d9caps.h
+
+1274308617 c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9.h
+	<limits.h>
+	"d3d9.h"
+	"d3dx9math.h"
+	"d3dx9core.h"
+	"d3dx9xof.h"
+	"d3dx9mesh.h"
+	"d3dx9shader.h"
+	"d3dx9effect.h"
+	"d3dx9tex.h"
+	"d3dx9shape.h"
+	"d3dx9anim.h"
+
+1274308617 c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9math.h
+	"d3dx9.h"
+	<math.h>
+	"d3dx9math.inl"
+
+1274308617 c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9math.inl
+
+1274308617 c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9core.h
+	"d3dx9.h"
+
+1274308617 c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9xof.h
+	"d3dx9.h"
+
+1274308617 c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9mesh.h
+	"d3dx9.h"
+
+1274308617 c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9shader.h
+	"d3dx9.h"
+
+1274308617 c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9effect.h
+	"d3dx9.h"
+
+1274308617 c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9tex.h
+	"d3dx9.h"
+
+1274308617 c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9shape.h
+	"d3dx9.h"
+
+1274308617 c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9anim.h
+
+1370713250 c:\users\linuks\dropbox\vsge\uckmodules\render\render_dx\ec_render.h
+	"BASE/EPLATFORM.h"
+	"BASE/ES_POINT2.h"
+	"BASE/ES_VECTOR4.h"
+	"BASE/ES_TRANSFORM.h"
+	"RENDER/RENDER_DX/ADDON/Include/d3d9.h"
+	"RENDER/RENDER_DX/ADDON/Include/d3dx9.h"
+
+1370545223 c:\users\linuks\dropbox\vsge\uckmodules\base\es_point2.h
+	"BASE/ETYPES.h"
+
+1370545223 c:\users\linuks\dropbox\vsge\uckmodules\base\es_vector4.h
+	"BASE/ETYPES.h"
+
+1370382502 c:\users\linuks\dropbox\vsge\uckmodules\base\es_transform.h
+
+1370712796 source:c:\users\linuks\dropbox\vsge\ucktests\test_os_and_widget\main.cpp
+	"OS/OS.h"
+	"RENDER/RENDER.h"
+	"BASE/ELANG.h"
+	"BASE/EMACRO.h"
+	"RENDER/ES_DRAW_DATA.h"
+	"RENDER/ES_DRAW_OPTIONS.h"
+
+1368973308 c:\users\linuks\dropbox\vsge\uckmodules\os\os.h
+	"win/EC_OS_WIN.h"
+
+1370545223 c:\users\linuks\dropbox\vsge\uckmodules\render\render.h
+	"RENDER/RENDER_DX/EC_RENDER.h"
+

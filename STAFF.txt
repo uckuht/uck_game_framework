@@ -1,0 +1,11 @@
+!header:
+
+// This file a part of project uckegine
+// All staff as is ...
+// Autor:
+// Date:
+// Desc:
+
+!datatypes list for highlight:
+
+ui8 ui16 ui32 ui64 si8 si16 si32 si64 uf32 uf64 sf32 sf64 ELANG ENEGATIVE ENOTHING EPOSITIVE mLOG ES_ATLAS_FRAME ES_DATA ES_FRECT ES_MATRIX4 ES_STRING_DYNAMIC ES_VECTOR4 EFAIL EDONE

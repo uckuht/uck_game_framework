@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="testbed_os_and_widget" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="Result/Debug/testbed_os_and_widget" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-DE_C_DEBUG" />
+				</Compiler>
+				<Linker>
+					<Add library="..\..\..\UCKLIBS\d3dx9.lib" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="Result/Release/testbed_os_and_widget" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DE_C_RELEASE" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="..\..\..\UCKLIBS\d3dx9.lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-DE_P_WIN" />
+			<Add option="-DE_LOG_CONSOLE" />
+			<Add directory="../../../UCKMODULES" />
+		</Compiler>
+		<Linker>
+			<Add library="..\..\..\UCKLIBS\d3d9.lib" />
+		</Linker>
+		<Unit filename="../../../CONF.txt" />
+		<Unit filename="../../../DESCRIPTION.txt" />
+		<Unit filename="../../../STAFF.txt" />
+		<Unit filename="../../../UCKMODULES/BASE/ELANG.h" />
+		<Unit filename="../../../UCKMODULES/BASE/EMACRO.h" />
+		<Unit filename="../../../UCKMODULES/BASE/EPLATFORM.h" />
+		<Unit filename="../../../UCKMODULES/BASE/ES_IRECT.h" />
+		<Unit filename="../../../UCKMODULES/BASE/ES_POINT2.h" />
+		<Unit filename="../../../UCKMODULES/BASE/ES_VECTOR3.cpp" />
+		<Unit filename="../../../UCKMODULES/BASE/ES_VECTOR3.h" />
+		<Unit filename="../../../UCKMODULES/BASE/ES_VECTOR4.h" />
+		<Unit filename="../../../UCKMODULES/BASE/ETYPES.h" />
+		<Unit filename="../../../UCKMODULES/OS/EC_OS_INTERFACE.h" />
+		<Unit filename="../../../UCKMODULES/OS/EC_WIDGET_INTERFACE.h" />
+		<Unit filename="../../../UCKMODULES/OS/OS.h" />
+		<Unit filename="../../../UCKMODULES/OS/win/EC_OS_WIN.cpp" />
+		<Unit filename="../../../UCKMODULES/OS/win/EC_OS_WIN.h" />
+		<Unit filename="../../../UCKMODULES/OS/win/EC_WIDGET_WIN.cpp" />
+		<Unit filename="../../../UCKMODULES/OS/win/EC_WIDGET_WIN.h" />
+		<Unit filename="../../../UCKMODULES/RENDER/EC_RENDER_INTERFACE.h" />
+		<Unit filename="../../../UCKMODULES/RENDER/ES_DRAW_DATA.cpp" />
+		<Unit filename="../../../UCKMODULES/RENDER/ES_DRAW_DATA.h" />
+		<Unit filename="../../../UCKMODULES/RENDER/ES_DRAW_OPTIONS.cpp" />
+		<Unit filename="../../../UCKMODULES/RENDER/ES_DRAW_OPTIONS.h" />
+		<Unit filename="../../../UCKMODULES/RENDER/ES_TEXTURE_DATA.h" />
+		<Unit filename="../../../UCKMODULES/RENDER/RENDER.h" />
+		<Unit filename="../../../UCKMODULES/RENDER/RENDER_DX/ADDON/Include/d3d9.h" />
+		<Unit filename="../../../UCKMODULES/RENDER/RENDER_DX/ADDON/Include/d3d9caps.h" />
+		<Unit filename="../../../UCKMODULES/RENDER/RENDER_DX/ADDON/Include/d3d9types.h" />
+		<Unit filename="../../../UCKMODULES/RENDER/RENDER_DX/ADDON/Include/d3dx9.h" />
+		<Unit filename="../../../UCKMODULES/RENDER/RENDER_DX/EC_RENDER.cpp" />
+		<Unit filename="../../../UCKMODULES/RENDER/RENDER_DX/EC_RENDER.h" />
+		<Unit filename="../../../UCKTESTS/test_os_and_widget/main.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<DoxyBlocks>
+				<comment_style block="0" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
