@@ -27,9 +27,11 @@ public:
     ES_DRAW_DATA();
 public:
     si32            fOnInit(ui32 v_cnt, ui32 i_cnt = 0, bool tex = false, bool col = false, bool nor = false);
+    si32            fOnInitIndexedQuad(sf32 x, sf32 y, sf32 w, sf32 h, bool tex, bool col, bool nor);
 public:
     si32            fVertexPositionSet(ui32 num, sf32 x, sf32 y, sf32 z = 0);
     si32            fVertexColorSet(ui32 num, ui32 color);
+    si32            fIndexValueSet(ui32 num, ui16 value);
 public:
     ES_VECTOR3*     fPositionGet(ui32 num);// Unsafe
     ui32*           fColorGet(ui32 num)   ;// Unsafe

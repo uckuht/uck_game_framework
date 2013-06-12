@@ -61,14 +61,14 @@
 			<Cursor1 position="377" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="..\..\..\UCKMODULES\RENDER\ES_DRAW_DATA.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\..\..\UCKMODULES\RENDER\ES_DRAW_DATA.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2266" topLine="42" />
+			<Cursor1 position="3293" topLine="93" />
 		</Cursor>
 	</File>
-	<File name="..\..\..\UCKMODULES\RENDER\ES_DRAW_DATA.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\..\..\UCKMODULES\RENDER\ES_DRAW_DATA.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1290" topLine="0" />
+			<Cursor1 position="1247" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="..\..\..\UCKMODULES\RENDER\ES_DRAW_OPTIONS.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -111,9 +111,9 @@
 			<Cursor1 position="371" topLine="12" />
 		</Cursor>
 	</File>
-	<File name="..\..\..\UCKMODULES\RENDER\RENDER_DX\EC_RENDER.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\..\..\UCKMODULES\RENDER\RENDER_DX\EC_RENDER.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1062" topLine="195" />
+			<Cursor1 position="8127" topLine="169" />
 		</Cursor>
 	</File>
 	<File name="..\..\..\UCKMODULES\BASE\ELANG.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -121,9 +121,9 @@
 			<Cursor1 position="374" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="..\..\..\UCKMODULES\RENDER\RENDER_DX\EC_RENDER.h" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\..\..\UCKMODULES\RENDER\RENDER_DX\EC_RENDER.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1230" topLine="22" />
+			<Cursor1 position="1718" topLine="34" />
 		</Cursor>
 	</File>
 	<File name="..\..\..\UCKMODULES\BASE\EMACRO.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -131,9 +131,9 @@
 			<Cursor1 position="278" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="..\..\..\UCKTESTS\test_os_and_widget\main.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\..\..\UCKTESTS\test_os_and_widget\main.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1439" topLine="9" />
+			<Cursor1 position="1101" topLine="11" />
 		</Cursor>
 	</File>
 	<File name="..\..\..\UCKMODULES\BASE\EPLATFORM.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">

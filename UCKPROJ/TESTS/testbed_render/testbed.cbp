@@ -38,6 +38,8 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-fno-rtti" />
+			<Add option="-fno-exceptions" />
 			<Add option="-DE_P_WIN" />
 			<Add option="-DE_LOG_CONSOLE" />
 			<Add directory="../../../UCKMODULES" />

@@ -103,3 +103,51 @@ ES_DRAW_DATA::fColorGet(ui32 num)
     return &colors[num];
 }
 //=================================================================//
+si32
+ES_DRAW_DATA::fOnInitIndexedQuad(sf32 x, sf32 y, sf32 w, sf32 h, bool tex, bool col, bool nor)
+{
+    fOnInit( 4, 6, tex, col, nor);
+    fVertexPositionSet(0, x,        y,      0);
+    fVertexPositionSet(1, x + w,    y,      0);
+    fVertexPositionSet(2, x + w,    y + h,  0);
+    fVertexPositionSet(3, x,        y + h,  0);
+
+    fIndexValueSet(0,0);
+    fIndexValueSet(1,1);
+    fIndexValueSet(2,2);
+    fIndexValueSet(3,0);
+    fIndexValueSet(4,2);
+    fIndexValueSet(5,3);
+
+    return EDONE;
+}
+//============================================================================//
+si32
+ES_DRAW_DATA::fIndexValueSet(ui32 num, ui16 value)
+{
+    if(NULL == indexes)
+    {//1
+        mLOGERROR("no indexes in draw data");
+        return EFAIL;
+    }//1
+    if(num > index_count)
+    {//1
+        mLOGERROR("accessing to unexisting index");
+        return EFAIL;
+    }//1
+
+    indexes[num] = value;
+}
+//============================================================================//
+
+
+
+
+
+
+
+
+
+
+
+

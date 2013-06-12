@@ -118,80 +118,75 @@ EC_RENDER::fDraw(ES_DRAW_DATA* p_data, ES_DRAW_OPTIONS* p_options)
     }//1
     if(NULL == p_data->positions)
     {//1
-        mLOGERROR("draw data withou positions disabled");
+        mLOGERROR("draw data without positions disabled");
         return EFAIL;
     }//1
-
 
 mBLOCK("Modern")
     {//1
         if(NULL == m_raster.vertex_buffer)
         {//2
+            bool    col_use = false;
+            bool    tex_use = false;
+            bool    nor_use = false;
+
             m_raster.raster_format = D3DFVF_XYZ;
-            m_raster.total_size = p_data->fVertexCountGet() * p_data->fVertexSizeOfGet();
+
+            if(p_options->diffused && p_data->colors != NULL)
+            {//3 color used
+                m_raster.raster_format |= D3DFVF_DIFFUSE;
+                col_use = true;
+            }//3
+            m_raster.total_size = p_data->fVertexCountGet() * p_data->fVertexSizeOfGet(tex_use,col_use,nor_use);
+
             if(FAILED(m_logic.device->CreateVertexBuffer( m_raster.total_size, 0, m_raster.raster_format, D3DPOOL_DEFAULT, &m_raster.vertex_buffer, NULL )))
-            {//3
+            {//3 vertex buffer creation failed
                 mLOGERROR("creating vertex buffer");
                 return EFAIL;
             }//3
-            void* p_vertex_buffer_temp_data;
+            float* p_vertex_buffer_temp_data;
             if( FAILED( m_raster.vertex_buffer->Lock( 0, m_raster.total_size, ( void** )&p_vertex_buffer_temp_data, 0 ) ) )
                 return EFAIL;
 
-            memcpy( p_vertex_buffer_temp_data, /*g_Vertices*/ p_data->positions, m_raster.total_size);
+            //memcpy( p_vertex_buffer_temp_data, /*g_Vertices*/ p_data->positions, m_raster.total_size);
+            ui32 pos_step = 3 + ( (col_use)?1:0 ) + ( (tex_use)?2:0 ) + ( (nor_use)?3:0 );
+            for(ui32 i = 0; i < p_data->fVertexCountGet(); i ++)
+            {//3 copying positions
+                ui32 from = i * 3;
+                ui32 to = i * pos_step;
+                p_vertex_buffer_temp_data[  from  ] = p_data->positions[   from   ];
+                p_vertex_buffer_temp_data[from + 1] = p_data->positions[ from + 1 ];
+                p_vertex_buffer_temp_data[from + 2] = p_data->positions[ from + 2 ];
+            }//3
+            if(col_use)
+            {//3
+                ui32 col_ofs = p_data->fVertexCountGet() * 3;
+                for(ui32 i = 0; i < p_data->fVertexCountGet(); i++)
+                {//3 colors
+                    ui32 to = i + col_ofs;
+                    ((si32&)p_vertex_buffer_temp_data[to]) = p_data->colors[i];
+                }//3
+            }//3
             m_raster.vertex_buffer->Unlock();
-            m_raster.primitive_count = 1;
-            m_raster.vertex_size = p_data->fVertexSizeOfGet();
+
+            if(NULL != p_data->indexes)
+            {//3
+                 if(FAILED(m_logic.device->CreateIndexBuffer(p_data->index_count,0,D3DFMT_INDEX16,D3DPOOL_DEFAULT,&m_raster.index_buffer, NULL)))
+                 {//4
+                     mLOGERROR("index creation");
+                     return EFAIL;
+                 }//4        if(SUCCEEDED(_pIndexBuffer->Lock(_ibOffset * sizeof(JINDEX_TYPE), countIndex*sizeof(JINDEX_TYPE), (void**)&tmpIndexData, _ibOffset ? D3DLOCK_NOOVERWRITE : D3DLOCK_DISCARD)))
+                 ui16*  index_data;
+                 m_raster.index_buffer->Lock(0,p_data->index_count*sizeof(ui16),(void**)&index_data,D3DLOCK_DISCARD);
+                 memcpy(index_data,p_data->indexes,p_data->index_count*sizeof(ui16));
+                 m_raster.index_buffer->Unlock();
+            }//3
+            m_raster.primitive_count = 2;
+            m_raster.vertex_size = p_data->fVertexSizeOfGet(tex_use,col_use,nor_use);
+            m_raster.vertex_count = p_data->vertex_count;
         }//2
         sDrawRasterData();
     }//1
-mBLOCK("Out dated")
-    if(false)
-    {//1
-        if(NULL == p_vb)
-        {//2
-            ui32 full_size = p_data->fVertexSizeOfGet() * p_data->fVertexCountGet();
-            if( FAILED( m_logic.device->CreateVertexBuffer( full_size, 0, D3DFVF_XYZ, D3DPOOL_DEFAULT, &p_vb, NULL ) ) )
-            {
-                mLOGERROR("creating vertex buffer");
-                return EFAIL;
-            }
-
-            void* p_vertex_buffer_temp_data;
-
-            if( FAILED( p_vb->Lock( 0, full_size, ( void** )&p_vertex_buffer_temp_data, 0 ) ) )
-                return EFAIL;
-
-            memcpy( p_vertex_buffer_temp_data, /*g_Vertices*/ p_data->positions, full_size);
-
-            p_vb->Unlock();
-
-
-        }//2
-        m_logic.device->Clear( 0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB( 0, 0, 255 ), 1.0f, 0 );
-        // Begin the scene
-        if( SUCCEEDED( m_logic.device->BeginScene() ) )
-        {
-            // Draw the triangles in the vertex buffer. This is broken into a few
-            // steps. We are passing the vertices down a "stream", so first we need
-            // to specify the source of that stream, which is our vertex buffer. Then
-            // we need to let D3D know what vertex shader to use. Full, custom vertex
-            // shaders are an advanced topic, but in most cases the vertex shader is
-            // just the FVF, so that D3D knows what type of vertices we are dealing
-            // with. Finally, we call DrawPrimitive() which does the actual rendering
-            // of our geometry (in this case, just one triangle).
-            m_logic.device->SetStreamSource( 0, p_vb, 0, p_data->fVertexSizeOfGet() );
-            m_logic.device->SetFVF( D3DFVF_CUSTOMVERTEX );
-            m_logic.device->DrawPrimitive( D3DPT_TRIANGLELIST, 0, 1 );
-
-            // End the scene
-            m_logic.device->EndScene();
-        }
-
-        // Present the backbuffer contents to the display
-        m_logic.device->Present( NULL, NULL, NULL, NULL );
-    }//1
-
     return EDONE;
 }
 //============================================================================//
@@ -199,8 +194,16 @@ si32
 EC_RENDER::sDrawRasterData()
 {// отрисовать подготовленную информацию
     m_logic.device->SetStreamSource( 0, m_raster.vertex_buffer, 0, m_raster.vertex_size );
+    m_logic.device->SetIndices(m_raster.index_buffer);
     m_logic.device->SetFVF( m_raster.raster_format );
-    m_logic.device->DrawPrimitive( D3DPT_TRIANGLELIST, 0, m_raster.primitive_count );
+    if(NULL == m_raster.index_buffer)
+    {//1
+        m_logic.device->DrawPrimitive( D3DPT_TRIANGLELIST, 0, m_raster.primitive_count );
+    }//1
+    else
+    {//1
+        m_logic.device->DrawIndexedPrimitive( D3DPT_TRIANGLELIST, 0, 0, m_raster.vertex_count, 0, m_raster.primitive_count );
+    }//1
 
     return EDONE;
 }
