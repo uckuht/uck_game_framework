@@ -129,6 +129,56 @@ si32 EC_RENDER::sBufferCreate(ui32 vertex_buffer_size, ui32 vertex_buffer_format
     return EDONE;
 }
 //============================================================================//
+EC_RENDER::VB*
+EC_RENDER::sVBCheck(ui32 format)
+{
+    VB* buffer = &m_buffers[format];
+    mLOGTODO("If check out is needed then check it");
+    return buffer;
+}
+//============================================================================//
+EC_RENDER::VB*
+EC_RENDER::sVBCreate(ui32 format, ui32 total_size)
+{
+    VB buffer;
+    if(FAILED( m_logic.device->CreateVertexBuffer( total_size, 0, format, D3DPOOL_DEFAULT, &buffer.vb, NULL ) ) )
+    {//1
+        mLOGERROR("creation vertex buffer");
+        return NULL;
+    }//1
+    buffer.vb_format = format;
+    buffer.vb_size = total_size;
+
+    m_buffers[format] = buffer;
+    mLOGTODO("If check out is needed then check it");
+    return &m_buffers[format];
+}
+//============================================================================//
+si32
+EC_RENDER::sRasterFill(VB* p_filler, ES_DRAW_DATA* p_data, bool tex, bool col, bool nor)
+{
+    return EDONE;
+}
+//============================================================================//
+ui32
+EC_RENDER::sRasterFormatGet(bool tex, bool col, bool nor)
+{
+    ui32 format = D3DFVF_XYZ;
+    if(tex)
+    {//1
+        format |= D3DFVF_TEX0;
+    }//1
+    if(col)
+    {//1
+        format |= D3DFVF_DIFFUSE;
+    }//1
+    if(nor)
+    {//1
+        format |= D3DFVF_NORMAL;
+    }//1
+    return format;
+}
+//============================================================================//
 si32
 EC_RENDER::fDraw(ES_DRAW_DATA* p_data, ES_DRAW_OPTIONS* p_options)
 {
@@ -143,6 +193,46 @@ mBLOCK("Check")
         mLOGERROR("draw data without positions disabled");
         return EFAIL;
     }//1
+
+
+    bool    use_col = false;
+    bool    use_nor = false;
+    bool    use_tex = false;
+mBLOCK("Options");
+    if(p_options->diffused && NULL != p_data->colors)
+    {//1
+        use_col = true;
+    }//1
+    if(p_options->texured && NULL != p_data->texels)
+    {//1
+        use_tex = true;
+    }//1
+
+mBLOCK("Getting vertex buffer");
+    ui32 vertex_format = sRasterFormatGet(p_data,p_options);
+    VB* buffer = sVBCheck(vertex_format);
+    if(NULL == buffer)
+    {//1
+        ui32 total_size = p_data->fVertexCountGet() * p_data->fVertexSizeOfGet(use_tex, use_col, use_nor);
+        buffer = sVBCreate(vertex_format, total_size);
+        if(NULL == buffer)
+        {//2
+            mLOGERROR("cant create vertex buffer");
+            return EFAIL;
+        }//2
+    }//1
+
+mBLOCK("Filling vertex buffer");
+    if(EDONE != sRasterFill(buffer, p_data, use_tex, use_col, use_nor))
+    {//1
+        mLOGERROR("cant fill raster data");
+        return EFAIL;
+    }//1
+
+mBLOCK("Drawing data to surface");
+    sDrawRasterData();
+
+return EDONE;
 
 mBLOCK("Old code")
     {//1

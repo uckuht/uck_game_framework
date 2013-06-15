@@ -68,7 +68,7 @@ private:
     };
     typedef std::pair<ui32, VB>     TP_VB; // format, vertex buffer
     typedef std::map<ui32, VB>      MAP_VB;
-    MAP_VB                          buffers;// preparied buffers
+    MAP_VB                          m_buffers;// preparied buffers
     struct RASTER
     {
         LPDIRECT3DVERTEXBUFFER9     vertex_buffer;
@@ -90,6 +90,8 @@ private:
     si32                sBufferCreate(ui32 vertex_buffer_size, ui32 vertex_buffer_format, ui32 index_buffer_size);
     VB*                 sVBCheck(ui32 format);// check vertex buffer by format
     VB*                 sVBCreate(ui32 format, ui32 total_size);
+    si32                sRasterFill(VB* p_filler, ES_DRAW_DATA* p_data, bool tex, bool col, bool nor);
+    ui32                sRasterFormatGet(bool tex, bool col, bool nor);
 };
 
 #endif // EC_RENER_H_INCLUDED
