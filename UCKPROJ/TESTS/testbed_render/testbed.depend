@@ -184,7 +184,7 @@
 
 1369770994 c:\users\user\dropbox\vsge\uckmodules\base\es_irect.h
 
-1370711486 c:\users\user\dropbox\vsge\uckmodules\base\elang.h
+1371142009 c:\users\user\dropbox\vsge\uckmodules\base\elang.h
 
 1370701613 source:c:\users\user\dropbox\vsge\uckmodules\os\win\ec_widget_win.cpp
 	"EC_WIDGET_WIN.h"
@@ -194,7 +194,7 @@
 1370710922 c:\users\user\dropbox\vsge\uckmodules\base\emacro.h
 	<iostream>
 
-1371057177 source:c:\users\user\dropbox\vsge\uckmodules\render\es_draw_data.cpp
+1371297980 source:c:\users\user\dropbox\vsge\uckmodules\render\es_draw_data.cpp
 	<string.h>
 	"ES_DRAW_DATA.h"
 	"BASE/ELANG.h"
@@ -204,7 +204,7 @@
 1371055197 c:\users\user\dropbox\vsge\uckmodules\render\es_draw_data.h
 	"BASE/ETYPES.h"
 
-1371057196 source:c:\users\user\dropbox\vsge\ucktests\test_os_and_widget\main.cpp
+1371296751 source:c:\users\user\dropbox\vsge\ucktests\test_os_and_widget\main.cpp
 	"OS/OS.h"
 	"RENDER/RENDER.h"
 	"BASE/ELANG.h"
@@ -218,7 +218,8 @@
 1370545223 c:\users\user\dropbox\vsge\uckmodules\render\render.h
 	"RENDER/RENDER_DX/EC_RENDER.h"
 
-1371046463 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\ec_render.h
+1371297781 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\ec_render.h
+	<map>
 	"BASE/EPLATFORM.h"
 	"BASE/ES_POINT2.h"
 	"BASE/ES_VECTOR4.h"
@@ -234,14 +235,14 @@
 
 1370382502 c:\users\user\dropbox\vsge\uckmodules\base\es_transform.h
 
-1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3d9.h
+1371298127 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3d9.h
 	<stdlib.h>
 	<objbase.h>
 	<windows.h>
 	"d3d9types.h"
 	"d3d9caps.h"
 
-1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3d9types.h
+1371298127 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3d9types.h
 	<float.h>
 
 1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3d9caps.h
@@ -259,14 +260,14 @@
 	"d3dx9shape.h"
 	"d3dx9anim.h"
 
-1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9math.h
+1371298134 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9math.h
 	"d3dx9.h"
 	<math.h>
 	"d3dx9math.inl"
 
 1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9math.inl
 
-1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9core.h
+1371298134 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9core.h
 	"d3dx9.h"
 
 1274308617 c:\users\user\dropbox\vsge\uckmodules\render\render_dx\addon\include\d3dx9xof.h
@@ -292,7 +293,7 @@
 1370712128 c:\users\user\dropbox\vsge\uckmodules\render\es_draw_options.h
 	"BASE/ETYPES.h"
 
-1371057007 source:c:\users\user\dropbox\vsge\uckmodules\render\render_dx\ec_render.cpp
+1371146222 source:c:\users\user\dropbox\vsge\uckmodules\render\render_dx\ec_render.cpp
 	<string>
 	"RENDER/RENDER_DX/ADDON/Include/d3d9.h"
 	"RENDER/RENDER_DX/ADDON/Include/d3dx9.h"

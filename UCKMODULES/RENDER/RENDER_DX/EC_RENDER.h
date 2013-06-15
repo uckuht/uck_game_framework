@@ -7,6 +7,8 @@
 // Date: 2013-05-19
 // Desc: Модуль рендера DirectX9c.
 //============================================================================//
+#include <map>
+//============================================================================//
 #include "BASE/EPLATFORM.h"
 #include "BASE/ES_POINT2.h"
 #include "BASE/ES_VECTOR4.h"
@@ -58,10 +60,21 @@ private:
         ES_VECTOR4              eye_up;
         ES_VECTOR4              eye_at;
     }m_logic;
+    struct VB
+    {
+        ui32                        vb_format;
+        ui32                        vb_size;
+        LPDIRECT3DVERTEXBUFFER9     vb;
+    };
+    typedef std::pair<ui32, VB>     TP_VB; // format, vertex buffer
+    typedef std::map<ui32, VB>      MAP_VB;
+    MAP_VB                          buffers;// preparied buffers
     struct RASTER
     {
         LPDIRECT3DVERTEXBUFFER9     vertex_buffer;
+        ui32                        vertex_buffer_size;
         LPDIRECT3DINDEXBUFFER9      index_buffer;
+        ui32                        index_buffer_size;
         ui32                        raster_format;
         ui32                        vertex_count;
         ui32                        primitive_count;
@@ -74,6 +87,9 @@ private:
     IDirect3D9Ex*       sDriverGet();
     si32                sDrawRasterData();
     void                sRaserDataClear();
+    si32                sBufferCreate(ui32 vertex_buffer_size, ui32 vertex_buffer_format, ui32 index_buffer_size);
+    VB*                 sVBCheck(ui32 format);// check vertex buffer by format
+    VB*                 sVBCreate(ui32 format, ui32 total_size);
 };
 
 #endif // EC_RENER_H_INCLUDED

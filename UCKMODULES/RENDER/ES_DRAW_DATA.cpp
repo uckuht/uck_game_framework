@@ -137,6 +137,7 @@ ES_DRAW_DATA::fIndexValueSet(ui32 num, ui16 value)
     }//1
 
     indexes[num] = value;
+    return EDONE;
 }
 //============================================================================//
 
