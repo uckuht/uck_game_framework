@@ -19,7 +19,7 @@
 					<Add option="-DE_C_DEBUG" />
 				</Compiler>
 				<Linker>
-					<Add library="..\..\..\UCKLIBS\d3dx9.lib" />
+					<Add library="..\..\..\UCKLIBS\win\gcc\d3dx9.lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -33,7 +33,7 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="..\..\..\UCKLIBS\d3dx9.lib" />
+					<Add library="..\..\..\UCKLIBS\win\gcc\d3dx9.lib" />
 				</Linker>
 			</Target>
 		</Build>
@@ -46,7 +46,7 @@
 			<Add directory="../../../UCKMODULES" />
 		</Compiler>
 		<Linker>
-			<Add library="..\..\..\UCKLIBS\d3d9.lib" />
+			<Add library="..\..\..\UCKLIBS\win\gcc\d3d9.lib" />
 		</Linker>
 		<Unit filename="../../../CONF.txt" />
 		<Unit filename="../../../DESCRIPTION.txt" />

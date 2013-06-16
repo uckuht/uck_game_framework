@@ -38,6 +38,14 @@ public:
     si32     fOnInit(INIT_STRUCT* p_init);
 
 public:// искажения
+    si32    fEyeSet(sf32 x, sf32 y, sf32 z, sf32 ux, sf32 uy, sf32 uz, sf32 tx, sf32 ty, sf32 tz);
+    si32    fProjectionPerspectiveSet(ui32 scrW = 0, ui32 scrH = 0);
+    si32    fProjectionOrthogonalSet(ui32 scrW = 0, ui32 scrH = 0, bool left_hand = false);
+
+    si32    fTransformGlobalSet(ES_TRANSFORM* p_transform);
+    si32    fTransformGlobalAdd(ES_TRANSFORM* p_transform);
+
+    si32    fTransformLocalSet(ES_TRANSFORM* p_transform);
 
 public:// рисование
     si32    fFrameClear(bool pixels, ui32 color, bool z_order, sf32 zvalue, bool stencil, ui16 svalue);
@@ -51,9 +59,13 @@ private:
     {
         IDirect3DDevice9Ex*     device;
         D3DPRESENT_PARAMETERS   present;
+
         D3DXMATRIX              mx_world;
         D3DXMATRIX              mx_viev;
         D3DXMATRIX              mx_proj;
+
+        D3DXMATRIX              mx_global;
+        D3DXMATRIX              mx_local;
 
         ES_TRANSFORM            tr_local;
         ES_TRANSFORM            tr_global;
@@ -99,6 +111,9 @@ private:
     si32                sIBExpand(ui32 new_size);
     si32                sRasterFill(VB* p_filler, ES_DRAW_DATA* p_data, ui32 data_size,bool tex, bool col, bool nor);
     ui32                sRasterFormatGet(bool tex, bool col, bool nor);
+    si32                sTransformToMatrix(ES_TRANSFORM* p_transform, D3DXMATRIX* p_matrix);
+    si32                sWorldMatrixSet(D3DXMATRIX* mx_world);
+
 };
 
 #endif // EC_RENER_H_INCLUDED

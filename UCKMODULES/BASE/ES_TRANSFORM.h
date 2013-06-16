@@ -25,7 +25,7 @@ struct ES_TRANSFORM
     sf32            cx;
     sf32            cy;
     sf32            cz;
-// global(include parent)
+// global(absolute parent transform)
     sf32            gtx;
     sf32            gty;
     sf32            gtz;
@@ -41,7 +41,7 @@ struct ES_TRANSFORM
     ES_TRANSFORM*   parent;
     void*           owner;
     ui32            hash;
-    
+
 public:
     void
     fClear()

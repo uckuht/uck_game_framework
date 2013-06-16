@@ -110,7 +110,7 @@ EC_RENDER::sInitMatrixes()
     m_logic.device->SetTransform( D3DTS_VIEW, &matView );
 
     D3DXMATRIXA16 matProj;
-    D3DXMatrixPerspectiveFovLH( &matProj, D3DX_PI / 4, 1.0f, 1.0f, 100.0f );
+    D3DXMatrixPerspectiveFovLH( &matProj, D3DX_PI / 4, 1.0f, 1.0f, 100000.0f );
     m_logic.device->SetTransform( D3DTS_PROJECTION, &matProj );
 }
 //============================================================================//
@@ -440,8 +440,139 @@ EC_RENDER::sRaserDataClear()
     memset( &m_raster, 0, sizeof(RASTER));
 }
 //============================================================================//
+si32
+EC_RENDER::fEyeSet(sf32 x, sf32 y, sf32 z, sf32 ux, sf32 uy, sf32 uz, sf32 tx, sf32 ty, sf32 tz)
+{
+    D3DXVECTOR3 vEyePt( x, y, z );
+    D3DXVECTOR3 vLookatPt( tx, ty, tz );
+    D3DXVECTOR3 vUpVec( ux, uy, uz );
+    D3DXMATRIXA16 matView;
+    D3DXMatrixLookAtLH( &m_logic.mx_viev, &vEyePt, &vLookatPt, &vUpVec );
+    m_logic.device->SetTransform( D3DTS_VIEW, &m_logic.mx_viev );
 
+mBLOCK("Eye pos");
+    m_logic.eye_pos.x = x;
+    m_logic.eye_pos.y = y;
+    m_logic.eye_pos.z = z;
+    m_logic.eye_pos.w = 1;
 
+mBLOCK("Eye up")
+    m_logic.eye_up.x = ux;
+    m_logic.eye_up.y = uy;
+    m_logic.eye_up.z = uz;
+    m_logic.eye_up.w = 0;
+
+mBLOCK("Eye at")
+    m_logic.eye_at.x = tx;
+    m_logic.eye_at.y = ty;
+    m_logic.eye_at.z = tz;
+    m_logic.eye_at.w = 0;
+
+    return EDONE;
+}
+//============================================================================//
+si32
+EC_RENDER::fProjectionPerspectiveSet(ui32 scrW, ui32 scrH)
+{
+    if(!scrW && !scrH )
+    {//1
+        scrW = m_logic.present.BackBufferWidth;
+        scrH = m_logic.present.BackBufferHeight;
+    }//1
+
+    float aspect = scrW / scrH;
+    float fow    = D3DX_PI / 4;
+
+    D3DXMatrixPerspectiveFovLH( &m_logic.mx_proj, fow, aspect, 0.0001f, 100000.0f );
+    m_logic.device->SetTransform( D3DTS_PROJECTION, &m_logic.mx_proj);
+    return EDONE;
+}
+//============================================================================//
+si32
+EC_RENDER::fProjectionOrthogonalSet(ui32 scrW, ui32 scrH, bool left_hand)
+{
+    if(!scrW && !scrH )
+    {//1
+        scrW = m_logic.present.BackBufferWidth;
+        scrH = m_logic.present.BackBufferHeight;
+    }//1
+
+    if(left_hand)
+    {//1
+        D3DXMatrixOrthoLH(&m_logic.mx_proj, scrW, scrH, 0, 0);
+    }//1
+    else
+    {//1
+        D3DXMatrixOrthoRH(&m_logic.mx_proj, scrW, scrH, 0, 0);
+    }//1
+
+    m_logic.device->SetTransform( D3DTS_PROJECTION, &m_logic.mx_proj);
+    return EDONE;
+}
+//============================================================================//
+si32
+EC_RENDER::sWorldMatrixSet(D3DXMATRIX* mx_world)
+{
+    m_logic.device->SetTransform( D3DTS_WORLD, &m_logic.mx_proj);
+    return EDONE;
+}
+//============================================================================//
+si32
+EC_RENDER::fTransformGlobalSet(ES_TRANSFORM* p_transform)
+{
+    m_logic.tr_global = *p_transform;
+    sTransformToMatrix(p_transform, &m_logic.mx_global);
+    D3DXMatrixMultiply(&m_logic.mx_world,&m_logic.mx_global,&m_logic.mx_local);
+    sWorldMatrixSet(&m_logic.mx_world);
+
+    return EDONE;
+}
+//============================================================================//
+si32
+EC_RENDER::fTransformGlobalAdd(ES_TRANSFORM* p_transform)
+{
+    m_logic.tr_global = *p_transform;
+    D3DXMATRIX  mx_tmp;
+    sTransformToMatrix(p_transform, &mx_tmp);
+    D3DXMatrixMultiply(&m_logic.mx_global,&m_logic.mx_global,&mx_tmp);
+    D3DXMatrixMultiply(&m_logic.mx_world,&m_logic.mx_global,&m_logic.mx_local);
+    sWorldMatrixSet(&m_logic.mx_world);
+
+    return EDONE;
+}
+//============================================================================//
+si32
+EC_RENDER::fTransformLocalSet(ES_TRANSFORM* p_transform)
+{
+    m_logic.tr_local = *p_transform;
+    sTransformToMatrix(p_transform, &m_logic.mx_local);
+    D3DXMatrixMultiply(&m_logic.mx_world,&m_logic.mx_global,&m_logic.mx_local);
+    sWorldMatrixSet(&m_logic.mx_world);
+
+    return EDONE;
+}
+//============================================================================//
+si32
+EC_RENDER::sTransformToMatrix(ES_TRANSFORM* p_transform, D3DXMATRIX* p_matrix)
+{
+    D3DXMATRIX mx_tmp;
+    D3DXMatrixIdentity(p_matrix);
+mBLOCK("Translate");
+    D3DXMatrixTranslation(&mx_tmp, -p_transform->cx, -p_transform->cy, p_transform->cz);
+    D3DXMatrixMultiply(p_matrix, p_matrix, &mx_tmp);
+mBLOCK("Rotate");
+    D3DXMatrixRotationYawPitchRoll(&mx_tmp, p_transform->ry, p_transform->rx, p_transform->rz);
+    D3DXMatrixMultiply(p_matrix, p_matrix, &mx_tmp);
+mBLOCK("Scale");
+    D3DXMatrixScaling(&mx_tmp, p_transform->sx, p_transform->sy, p_transform->sz);
+    D3DXMatrixMultiply(p_matrix, p_matrix, &mx_tmp);
+mBLOCK("Translate");
+    D3DXMatrixTranslation(&mx_tmp, p_transform->tx, p_transform->ty, p_transform->tz);
+    D3DXMatrixMultiply(p_matrix, p_matrix, &mx_tmp);
+
+    return EDONE;
+}
+//============================================================================//
 
 
 

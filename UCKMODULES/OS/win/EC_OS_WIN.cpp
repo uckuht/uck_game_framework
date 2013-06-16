@@ -5,7 +5,8 @@ int
 EC_OS::fOnUpdate()
 {
     MSG msg;
-    if(GetMessageW(&msg,0,0,0))
+    memset(&msg,0,sizeof(MSG));
+    while(PeekMessageW(&msg,0,0,0,PM_REMOVE))
     {//1
         TranslateMessage(&msg);
         DispatchMessage(&msg);
