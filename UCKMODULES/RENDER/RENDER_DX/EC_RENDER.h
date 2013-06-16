@@ -20,6 +20,8 @@
 struct ES_DRAW_DATA;
 struct ES_DRAW_OPTIONS;
 //============================================================================//
+#define E_RENDER_INDEX_TYPE ui16
+//============================================================================//
 class EC_RENDER
 {
 public:
@@ -66,17 +68,19 @@ private:
         ui32                        vb_size;
         LPDIRECT3DVERTEXBUFFER9     vb;
     };
-    typedef std::pair<ui32, VB>     TP_VB; // format, vertex buffer
-    typedef std::map<ui32, VB>      MAP_VB;
-    MAP_VB                          m_buffers;// preparied buffers
+    typedef std::pair<ui32, VB>                 TP_VB; // format, vertex buffer
+    typedef std::map<ui32, VB>                  MAP_VB;
+    typedef std::map<ui32, VB>::iterator        MAP_VB_ITER;
+    MAP_VB                                      m_buffers;// preparied buffers
     struct RASTER
     {
         LPDIRECT3DVERTEXBUFFER9     vertex_buffer;
+        ui32                        vertex_count;
         ui32                        vertex_buffer_size;
         LPDIRECT3DINDEXBUFFER9      index_buffer;
+        ui32                        index_count;
         ui32                        index_buffer_size;
         ui32                        raster_format;
-        ui32                        vertex_count;
         ui32                        primitive_count;
         ui32                        total_size;
         ui32                        vertex_size;
@@ -90,7 +94,10 @@ private:
     si32                sBufferCreate(ui32 vertex_buffer_size, ui32 vertex_buffer_format, ui32 index_buffer_size);
     VB*                 sVBCheck(ui32 format);// check vertex buffer by format
     VB*                 sVBCreate(ui32 format, ui32 total_size);
-    si32                sRasterFill(VB* p_filler, ES_DRAW_DATA* p_data, bool tex, bool col, bool nor);
+    si32                sVBExpand(VB* buffer, ui32 new_size);
+    si32                sIBCreate(ui32 index_b_size);
+    si32                sIBExpand(ui32 new_size);
+    si32                sRasterFill(VB* p_filler, ES_DRAW_DATA* p_data, ui32 data_size,bool tex, bool col, bool nor);
     ui32                sRasterFormatGet(bool tex, bool col, bool nor);
 };
 

@@ -54,7 +54,8 @@ EC_RENDER::EC_RENDER()
     m_logic.device = 0;
 }
 //============================================================================//
-si32 EC_RENDER::fOnInit(INIT_STRUCT* p_init)
+si32
+EC_RENDER::fOnInit(INIT_STRUCT* p_init)
 {
     IDirect3D9Ex* driver = sDriverGet();
     if(!driver)
@@ -84,6 +85,11 @@ si32 EC_RENDER::fOnInit(INIT_STRUCT* p_init)
     m_logic.device->SetRenderState( D3DRS_LIGHTING, FALSE );
     sRaserDataClear();
     sInitMatrixes();
+    if(EDONE != sIBCreate(500))
+    {//1
+        mLOG_CRITICAL_ERROR("no indexes, no render");
+        return EFAIL;
+    }//1
 
     return EDONE;
 }
@@ -108,7 +114,8 @@ EC_RENDER::sInitMatrixes()
     m_logic.device->SetTransform( D3DTS_PROJECTION, &matProj );
 }
 //============================================================================//
-si32 EC_RENDER::sBufferCreate(ui32 vertex_buffer_size, ui32 vertex_buffer_format, ui32 index_buffer_size)
+si32
+EC_RENDER::sBufferCreate(ui32 vertex_buffer_size, ui32 vertex_buffer_format, ui32 index_buffer_size)
 {
     m_raster.index_buffer_size = index_buffer_size;
     m_raster.vertex_buffer_size = vertex_buffer_size;
@@ -132,8 +139,14 @@ si32 EC_RENDER::sBufferCreate(ui32 vertex_buffer_size, ui32 vertex_buffer_format
 EC_RENDER::VB*
 EC_RENDER::sVBCheck(ui32 format)
 {
-    VB* buffer = &m_buffers[format];
-    mLOGTODO("If check out is needed then check it");
+//    VB* buffer = &m_buffers[format];
+//    mLOGTODO("If check out is needed then check it");
+    MAP_VB_ITER i = m_buffers.find(format);
+    if(i == m_buffers.end())
+    {//1
+        return NULL;
+    }//1
+    VB* buffer = &i->second;
     return buffer;
 }
 //============================================================================//
@@ -155,8 +168,119 @@ EC_RENDER::sVBCreate(ui32 format, ui32 total_size)
 }
 //============================================================================//
 si32
-EC_RENDER::sRasterFill(VB* p_filler, ES_DRAW_DATA* p_data, bool tex, bool col, bool nor)
+EC_RENDER::sVBExpand(VB* buffer, ui32 new_size)
+{// расширяет буфер вершин
+    LPDIRECT3DVERTEXBUFFER9 vertexb;
+    if(FAILED( m_logic.device->CreateVertexBuffer( new_size, 0, buffer->vb_format, D3DPOOL_DEFAULT, &vertexb, NULL ) ) )
+    {//1
+        mLOGERROR("expanding vertex buffer");
+        return NULL;
+    }//1
+
+    buffer->vb->Release();
+    buffer->vb = vertexb;
+    buffer->vb_size = new_size;
+
+    return EDONE;
+}
+//============================================================================//
+si32
+EC_RENDER::sIBCreate(ui32 index_b_size)
 {
+    if(FAILED( m_logic.device->CreateIndexBuffer( index_b_size, 0, D3DFMT_INDEX16, D3DPOOL_DEFAULT, &m_raster.index_buffer, NULL)))
+    {//1 нет индексов, нет рисования
+        mLOG_CRITICAL_ERROR("failed creation index buffer");
+        return EFAIL;
+    }//1
+    m_raster.index_buffer_size = index_b_size;
+    return EDONE;
+}
+//============================================================================//
+si32
+EC_RENDER::sIBExpand(ui32 new_size)
+{
+    LPDIRECT3DINDEXBUFFER9  ib;
+    if( FAILED( m_logic.device->CreateIndexBuffer( new_size, 0, D3DFMT_INDEX16, D3DPOOL_DEFAULT, &ib, NULL)))
+    {//1 новый буфер не выделился, но старый же есть
+        mLOG_CRASH_ERROR("failed expand indexes");
+        return EFAIL;
+    }//1
+    m_raster.index_buffer->Release();
+    m_raster.index_buffer = ib;
+    m_raster.index_buffer_size = new_size;
+    return EDONE;
+}
+//============================================================================//
+si32
+EC_RENDER::sRasterFill(VB* p_filler, ES_DRAW_DATA* p_data, ui32 data_size, bool tex, bool col, bool nor)
+{// заполняет буффер вершин
+
+mBLOCK("Prepare vertex")
+    float* tmp_vertex_data = 0;
+    if( FAILED( p_filler->vb->Lock(0, data_size, (void**)&tmp_vertex_data, 0 ) ) )
+    {//1
+        mLOGERROR("locking filler");
+        return EFAIL;
+    }//1
+
+mBLOCK("Fill vertexes");
+    ui32 pos_step = 3 + ( (col)?1:0 ) + ( (tex)?2:0 ) + ( (nor)?3:0 );
+    for(ui32 i = 0; i < p_data->fVertexCountGet(); i ++)
+    {//1 copying positions
+        ui32 from = i * 3;
+        ui32 to = i * pos_step;
+        tmp_vertex_data[   to   ] = p_data->positions[   from   ];
+        tmp_vertex_data[ to + 1 ] = p_data->positions[ from + 1 ];
+        tmp_vertex_data[ to + 2 ] = p_data->positions[ from + 2 ];
+    }//1
+    if(col)
+    {//1
+        ui32 col_ofs = 3;
+        for(ui32 i = 0; i < p_data->fVertexCountGet(); i++)
+        {//2 colors
+            ui32 to = i * pos_step + col_ofs;
+            (si32&)tmp_vertex_data[ to ] = p_data->colors[i];
+        }//2
+    }//1
+
+mBLOCK("Finish vertexes");
+    p_filler->vb->Unlock();
+    m_raster.vertex_buffer  = p_filler->vb;
+    m_raster.raster_format  = p_filler->vb_format;
+    m_raster.vertex_size    = p_data->fVertexSizeOfGet( tex, col, nor);
+    m_raster.total_size     = data_size;
+    m_raster.vertex_count   = p_data->fVertexCountGet();
+
+mBLOCK("Prepare index");
+    if(p_data->index_count == 0)
+    {//1 индексов нет, заполнять нечем
+        m_raster.index_count = 0;
+        m_raster.primitive_count = p_data->fVertexCountGet() / 3;
+        return EDONE;
+    }//1
+    if(m_raster.index_buffer_size < p_data->index_count)
+    {//1 имеющегося буфера недостаточно
+        if(EDONE != sIBExpand(p_data->index_count + 10))
+        {//2 буффер не выделился, этот объект мы не нарисуем
+            mLOGERROR(" index buffer to small");
+            return EFAIL;
+        }//2
+    }//1
+    m_raster.index_count = p_data->index_count;
+    E_RENDER_INDEX_TYPE*  index_data;
+    if( FAILED (m_raster.index_buffer->Lock(0, p_data->index_count * sizeof(E_RENDER_INDEX_TYPE), (void**)&index_data, D3DLOCK_DISCARD) ) )
+    {//1 серьезная ошибка которую можно не пережить. вершины заполнены, но индексы залочить неудалось. рисоваться нельзя.
+        sRaserDataClear();
+        mLOG_CRASH_ERROR("locking index buffer");
+        return EFAIL;
+    }//1
+    ui32 index_data_size = p_data->index_count * sizeof(E_RENDER_INDEX_TYPE);
+    memcpy(index_data, p_data->indexes, index_data_size);
+    m_raster.index_buffer->Unlock();
+
+mBLOCK("Finishing filling indexes");
+    m_raster.primitive_count = p_data->index_count / 3;
+
     return EDONE;
 }
 //============================================================================//
@@ -209,113 +333,51 @@ mBLOCK("Options");
     }//1
 
 mBLOCK("Getting vertex buffer");
-    ui32 vertex_format = sRasterFormatGet(p_data,p_options);
+    ui32 total_size = p_data->fVertexCountGet() * p_data->fVertexSizeOfGet(use_tex, use_col, use_nor);
+    ui32 vertex_format = sRasterFormatGet(use_tex, use_col, use_nor);
     VB* buffer = sVBCheck(vertex_format);
     if(NULL == buffer)
     {//1
-        ui32 total_size = p_data->fVertexCountGet() * p_data->fVertexSizeOfGet(use_tex, use_col, use_nor);
-        buffer = sVBCreate(vertex_format, total_size);
+
+        buffer = sVBCreate(vertex_format, total_size + 100);
         if(NULL == buffer)
         {//2
             mLOGERROR("cant create vertex buffer");
             return EFAIL;
         }//2
     }//1
+    if(buffer->vb_size <= total_size)
+    {//1 гарантирует что буфер всегда сможет принять необходимое количество данных
+        if(EDONE != sVBExpand(buffer, total_size + 1))
+        {//2
+            mLOGERROR("expanding buffer");
+            return EFAIL;
+        }//2
+    }//1
 
 mBLOCK("Filling vertex buffer");
-    if(EDONE != sRasterFill(buffer, p_data, use_tex, use_col, use_nor))
+    if(EDONE != sRasterFill(buffer, p_data, total_size, use_tex, use_col, use_nor))
     {//1
         mLOGERROR("cant fill raster data");
         return EFAIL;
     }//1
 
 mBLOCK("Drawing data to surface");
-    sDrawRasterData();
-
-return EDONE;
-
-mBLOCK("Old code")
-    {//1
-
-        bool    col_use = false;
-        bool    tex_use = false;
-        bool    nor_use = false;
-
-        m_raster.total_size = p_data->fVertexCountGet() * p_data->fVertexSizeOfGet(tex_use, col_use, nor_use);
-        m_raster.raster_format = D3DFVF_XYZ;
-
-        if(p_options->diffused && p_data->colors != NULL)
-        {//3 color used
-            m_raster.raster_format |= D3DFVF_DIFFUSE;
-            col_use = true;
-        }//3
-
-        if(NULL == m_raster.vertex_buffer)
-        {//2
-            if(EDONE != sBufferCreate(m_raster.total_size + 1 , m_raster.raster_format, p_data->index_count * 2) )
-            {//3
-                return EFAIL;
-            }//3
-        }//2
-
-        float* p_vertex_buffer_temp_data;
-        HRESULT RES_OF_LOCK = m_raster.vertex_buffer->Lock( 0, m_raster.total_size, ( void** )&p_vertex_buffer_temp_data, 0 );
-        if( FAILED( RES_OF_LOCK ) )
-        {//2
-            mLOGERROR("vertex lock ");
-            return EFAIL;
-        }//2
-
-        ui32 pos_step = 3 + ( (col_use)?1:0 ) + ( (tex_use)?2:0 ) + ( (nor_use)?3:0 );
-        for(ui32 i = 0; i < p_data->fVertexCountGet(); i ++)
-        {//3 copying positions
-            ui32 from = i * 3;
-            ui32 to = i * pos_step;
-            p_vertex_buffer_temp_data[   to   ] = p_data->positions[   from   ];
-            p_vertex_buffer_temp_data[ to + 1 ] = p_data->positions[ from + 1 ];
-            p_vertex_buffer_temp_data[ to + 2 ] = p_data->positions[ from + 2 ];
-        }//3
-        if(col_use)
-        {//3
-            ui32 col_ofs = 3;
-            for(ui32 i = 0; i < p_data->fVertexCountGet(); i++)
-            {//3 colors
-                ui32 to = i * pos_step + col_ofs;
-                (si32&)p_vertex_buffer_temp_data[ to ] = p_data->colors[i];
-            }//3
-        }//3
-        m_raster.vertex_buffer->Unlock();
-
-        if(NULL != p_data->indexes)
-        {//3
-             ui16*  index_data;
-             m_raster.index_buffer->Lock(0,p_data->index_count*sizeof(ui16),(void**)&index_data,D3DLOCK_DISCARD);
-             memcpy(index_data,p_data->indexes,p_data->index_count*sizeof(ui16));
-             m_raster.index_buffer->Unlock();
-        }//3
-        if(NULL == m_raster.index_buffer)
-        {//3
-            m_raster.primitive_count = p_data->vertex_count / 3;
-        }//3
-        else
-        {//3 index onn
-            m_raster.primitive_count = p_data->index_count / 3;
-        }//3
-        m_raster.vertex_size = p_data->fVertexSizeOfGet(tex_use,col_use,nor_use);
-        m_raster.vertex_count = p_data->vertex_count;
-
-        sDrawRasterData();
-    }//1
-    return EDONE;
+return sDrawRasterData();
 }
 //============================================================================//
 si32
 EC_RENDER::sDrawRasterData()
 {// отрисовать подготовленную информацию
+    if(m_raster.primitive_count == 0)
+    {//1
+        mLOGERROR("raster data empty");
+        return EFAIL;
+    }//1
     m_logic.device->SetStreamSource( 0, m_raster.vertex_buffer, 0, m_raster.vertex_size );
     m_logic.device->SetIndices(m_raster.index_buffer);
     m_logic.device->SetFVF( m_raster.raster_format );
-    if(0 == m_raster.index_buffer_size)
+    if(0 == m_raster.index_count)
     {//1
         m_logic.device->DrawPrimitive( D3DPT_TRIANGLELIST, 0, m_raster.primitive_count );
     }//1

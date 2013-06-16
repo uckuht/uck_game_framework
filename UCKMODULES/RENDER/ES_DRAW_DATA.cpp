@@ -87,6 +87,10 @@ ES_DRAW_DATA::fVertexCountGet()
 si32
 ES_DRAW_DATA::fVertexColorSet(ui32 num, ui32 color)
 {
+    if(NULL == colors )
+    {//1
+        return ENOTHING;
+    }//1
     if(num > vertex_count - 1)
     {//1
         mLOGWARN("getting access to unexisting color");

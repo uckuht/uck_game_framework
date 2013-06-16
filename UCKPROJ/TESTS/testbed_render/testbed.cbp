@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
 				<Compiler>
+					<Add option="-Wextra" />
 					<Add option="-Wall" />
 					<Add option="-g" />
 					<Add option="-DE_C_DEBUG" />
@@ -80,6 +81,7 @@
 		<Unit filename="../../../UCKMODULES/RENDER/RENDER_DX/EC_RENDER.cpp" />
 		<Unit filename="../../../UCKMODULES/RENDER/RENDER_DX/EC_RENDER.h" />
 		<Unit filename="../../../UCKTESTS/test_os_and_widget/main.cpp" />
+		<Unit filename="../../../temp.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

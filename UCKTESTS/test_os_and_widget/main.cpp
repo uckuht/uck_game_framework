@@ -29,7 +29,7 @@ main()
     ini_str.bb_size.fClear();
 
     ES_DRAW_DATA draw_data;
-    draw_data.fOnInitIndexedQuad(-1,-1,1,1,false,true,false);
+    draw_data.fOnInitIndexedQuad(-2,-1,1,1,false,true,false);
 
     draw_data.fVertexColorSet(0,    ECOLOR_BLUE);
     draw_data.fVertexColorSet(1,    ECOLOR_BLUE);
@@ -37,7 +37,7 @@ main()
     draw_data.fVertexColorSet(3,    ECOLOR_BLUE);
 
     ES_DRAW_DATA    ano_data;
-    ano_data.fOnInitIndexedQuad(2,2,1,1,false,false,false);
+    ano_data.fOnInitIndexedQuad(-1,-1,2,2,false,false,false);
 
     ES_DRAW_OPTIONS draw_opt;
     draw_opt.fClear();
@@ -48,7 +48,7 @@ main()
     {//1
         g_os.fOnUpdate();
 
-        g_render.fFrameClear(true, ECOLOR_BLUE,false,0,false ,0);
+        g_render.fFrameClear(true, ECOLOR_GRAY,false,0,false ,0);
         if(EDONE == g_render.fFrameLock())
         {//1
             g_render.fDraw(&draw_data,  &draw_opt);
